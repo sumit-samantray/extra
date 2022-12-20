@@ -1,0 +1,33 @@
+def inc_i():
+    global i
+    i += 1
+    if i == 2:
+        txt = 'nd'
+    elif i == 3:
+        txt = 'rd'
+    else:
+        txt = 'th'
+    if i > 4:
+        Label(master, text = 'Thank You!').pack()
+        main_label.destroy()
+        y_button.destroy()
+        n_button.destroy()
+        Button(master, text = 'Finish', command = master.destroy).pack()
+    else:
+        main_label.config(text = 'Are you ready for the ' + str(i) + txt + ' call?')
+##################################
+master = Tk()
+master.title('AVAYA Control Centre')
+master.geometry('300x150')
+main_label = Label(master, text = 'Are you ready for the ' + str(i) + 'st call?')
+main_label.pack()
+f2 = Frame(master, width = 100, height = 50)
+f2.pack()
+y_button = Button(f2, text = 'Yes', command = inc_i)
+y_button.pack(side = LEFT)
+n_button = Button(f2, text = 'No', command = master.destroy)
+n_button.pack(side = RIGHT)
+master.attributes('-topmost', 1)
+master.update()
+master.attributes('-topmost', 0)
+master.mainloop()
